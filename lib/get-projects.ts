@@ -28,7 +28,7 @@ export function getProjects(): Project[] {
       const displayName = folderName
         .replace(/project/i, "project ")
         .toUpperCase();
-      
+
       return {
         name: folderName,
         displayName: displayName,
