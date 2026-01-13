@@ -10,6 +10,7 @@ import {
   NavigationMenuTrigger,
   NavigationMenuContent,
 } from "@/components/ui/navigation-menu";
+import { getProjects } from "@/lib/get-projects";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -37,6 +38,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const projects = getProjects();
+
   return (
     <html lang="en">
       <body
@@ -79,22 +82,16 @@ export default function RootLayout({
                   </NavigationMenuTrigger>
                   <NavigationMenuContent className="bg-stone-800 border-stone-700">
                     <ul className="grid gap-2 p-4 w-[200px]">
-                      <li>
-                        <NavigationMenuLink
-                          href="projects/soulbound"
-                          className="text-white text-lg font-bold block p-2 rounded bg-stone-800 hover:bg-stone-700"
-                        >
-                          SOULBOUND
-                        </NavigationMenuLink>
-                      </li>
-                      <li>
-                        <NavigationMenuLink
-                          href="projects/ethos"
-                          className="text-white text-lg font-bold block p-2 rounded bg-stone-800 hover:bg-stone-700"
-                        >
-                          ETHOS
-                        </NavigationMenuLink>
-                      </li>
+                      {projects.map((project) => (
+                        <li key={project.name}>
+                          <NavigationMenuLink
+                            href={project.href}
+                            className="text-white text-lg font-bold block p-2 rounded bg-stone-800 hover:bg-stone-700"
+                          >
+                            {project.displayName}
+                          </NavigationMenuLink>
+                        </li>
+                      ))}
                     </ul>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
