@@ -184,6 +184,16 @@
       opacity: 0;
     }
   }
+
+  /* @keyframes fadeUp {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  } */
   
   .typewriter {
     overflow: hidden;
@@ -201,5 +211,9 @@
   
   .fade-out {
     animation: fadeOut 0.5s ease-out forwards;
+  }
+
+  .fade-up {
+    animation: fadeIn 0.5s ease-in;
   }
 }

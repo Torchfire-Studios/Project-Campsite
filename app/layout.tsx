@@ -46,7 +46,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${anta.variable} antialiased bg-stone-700`}
       >
         {/* HEADER */}
-        <div className="flex items-center w-full pb-3 bg-stone-800">
+        <div className="sticky top-0 z-50 flex items-center w-full py-4 bg-stone-800/80 backdrop-blur-md border-b border-stone-700/50 shadow-lg">
+          {/* Gradient fade effect */}
+          <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-b from-transparent to-stone-700/20 pointer-events-none" />
           {/* COMPANY LOGO */}
           <div className="flex-1 flex justify-start">
             <Image
@@ -54,13 +56,13 @@ export default function RootLayout({
               width={60}
               height={75}
               alt="Stylized Picture of flame from a match"
-              className="ml-5 mt-5 pb-3"
+              className="ml-5"
             />
           </div>
           {/* COMPANY TITLE */}
           <div className="flex-1 flex justify-center">
             {/* <h1 className="font-[family-name:var(--font-anta)] font-extrabold bg-linear-to-r from-orange-500 to-red-700 bg-clip-text text-transparent text-5xl m-2"> */}
-            <h1 className="font-[family-name:var(--font-anta)] font-extrabold text-white text-5xl m-2">
+            <h1 className="font-[family-name:var(--font-anta)] font-extrabold text-white text-5xl">
               TORCHFIRE STUDIOS
             </h1>
           </div>
@@ -97,7 +99,7 @@ export default function RootLayout({
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <NavigationMenuLink
-                    href="about"
+                    href="/about"
                     className="text-white text-lg font-bold hover:bg-stone-700"
                   >
                     <h2 className="text-white">ABOUT</h2>

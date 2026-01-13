@@ -26,7 +26,7 @@ export default function Home() {
   }, [currentWordIndex, words.length]);
 
   return (
-    <div className="relative flex items-center justify-center min-h-screen">
+    <div className="relative flex items-center justify-center min-h-screen -mt-[88px] pt-[88px]">
       {/* Background Image */}
       <Image
         src="/hero.png"
@@ -36,7 +36,7 @@ export default function Home() {
         priority
       />
       {/* Content */}
-      <div className="relative z-10 text-8xl font-bold text-center bg-white/40 backdrop-blur-sm rounded-xl px-24 py-12 w-[900px]">
+      <div className="relative z-10 text-8xl font-bold text-center bg-black/40 backdrop-blur-sm rounded-xl px-24 py-12 w-[900px]">
         <h1 className="text-white mb-5">WE MAKE</h1>
         <div className="h-32 flex items-center justify-center">
           <h1
