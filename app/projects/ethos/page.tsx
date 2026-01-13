@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Ethos() {
   return (
-    <div className="relative flex items-center justify-center min-h-screen -mt-[145px] pt-[145px]">
+    <div className="relative flex items-center justify-center min-h-screen -mt-[112px] pt-[145px]">
       <Image
         src="/ethossnapshot.png"
         alt="Hero background"
