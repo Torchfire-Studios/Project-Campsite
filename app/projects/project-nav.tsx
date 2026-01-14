@@ -17,7 +17,7 @@ export function ProjectNav({ projects }: ProjectNavProps) {
   const pathname = usePathname();
 
   return (
-    <div className="absolute top-0 z-50 w-full py-4 bg-stone-800/80 backdrop-blur-md border-b border-stone-700/50 mt-28 shadow-lg">
+    <div className="absolute top-0 z-10 w-full py-4 bg-stone-800/80 backdrop-blur-md border-b border-stone-700/50 mt-28 shadow-lg">
       <div className="flex justify-center">
         <NavigationMenu>
           <NavigationMenuList>
