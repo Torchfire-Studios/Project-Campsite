@@ -1,10 +1,26 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Anta } from "next/font/google";
 import "./globals.css";
-
+import Image from "next/image";
+import {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
+} from "@/components/ui/navigation-menu";
+import { getProjects } from "@/lib/get-projects";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+});
+
+const anta = Anta({
+  subsets: ["latin"],
+  weight: "400",
+  // display: "swap",
+  variable: "--font-anta",
 });
 
 const geistMono = Geist_Mono({
@@ -22,11 +38,77 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const projects = getProjects();
+
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${anta.variable} antialiased bg-stone-700`}
       >
+        {/* HEADER */}
+        <div className="sticky top-0 z-50 flex items-center w-full py-4 bg-stone-800/80 backdrop-blur-md border-b border-stone-700/50 shadow-lg">
+          {/* Gradient fade effect */}
+          <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-b from-transparent to-stone-700/20 pointer-events-none" />
+          {/* COMPANY LOGO */}
+          <div className="flex-1 flex justify-start">
+            <Image
+              src="/justtorchflame.png"
+              width={60}
+              height={75}
+              alt="Stylized Picture of flame from a match"
+              className="ml-5"
+            />
+          </div>
+          {/* COMPANY TITLE */}
+          <div className="flex-1 flex justify-center">
+            {/* <h1 className="font-[family-name:var(--font-anta)] font-extrabold bg-linear-to-r from-orange-500 to-red-700 bg-clip-text text-transparent text-5xl m-2"> */}
+            <h1 className="font-[family-name:var(--font-anta)] font-extrabold text-white text-5xl">
+              TORCHFIRE STUDIOS
+            </h1>
+          </div>
+          {/* NAVIGATION BAR */}
+          <div className="flex-1 flex justify-end mr-6">
+            <NavigationMenu>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuLink
+                    href="/"
+                    className="text-white text-lg font-bold hover:bg-stone-700"
+                  >
+                    <h2 className="text-white">HOME</h2>
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+                <NavigationMenuItem className="hidden md:block">
+                  <NavigationMenuTrigger className="text-white text-lg font-bold bg-stone-800 hover:bg-stone-700">
+                    <h2 className="text-white">PROJECTS</h2>
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent className="bg-stone-800 border-stone-700">
+                    <ul className="grid gap-2 p-4 w-[200px]">
+                      {projects.map((project) => (
+                        <li key={project.name}>
+                          <NavigationMenuLink
+                            href={project.href}
+                            className="text-white text-lg font-bold block p-2 rounded bg-stone-800 hover:bg-stone-700"
+                          >
+                            {project.displayName}
+                          </NavigationMenuLink>
+                        </li>
+                      ))}
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <NavigationMenuLink
+                    href="/about"
+                    className="text-white text-lg font-bold hover:bg-stone-700"
+                  >
+                    <h2 className="text-white">ABOUT</h2>
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
+          </div>
+        </div>
         {children}
       </body>
     </html>
