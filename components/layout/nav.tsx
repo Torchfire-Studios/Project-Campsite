@@ -1,46 +1,73 @@
+"use client";
+
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+
 const nav = () => {
+	const pathname = usePathname();
+
+	const isActive = (path: string) => {
+		if (path === "/") return pathname === "/";
+		return pathname.startsWith(path);
+	};
+
 	return (
 		<div>
-			<div className="font-(family-name:--font-castoro-titling) flex gap-6 mt-10 text-lg">
-				<ul className="flex gap-6 font-semibold">
+			<div className="font-(family-name:--font-castoro-titling) flex gap-6 mt-8 text-lg">
+				<ul className="flex gap-10 font-semibold">
 					<li>
-						<a
-							href="#"
-							className="hover:text-tertiary transition-colors duration-300 text-md"
+						<Link
+							href="/"
+							className={`hover:text-primary transition-colors duration-300 text-md ${
+								isActive("/") ? "text-primary" : ""
+							}`}
+						>
+							Home
+						</Link>
+					</li>
+					<li>
+						<Link
+							href="/about"
+							className={`hover:text-primary transition-colors duration-300 text-md ${
+								isActive("/about") ? "text-primary" : ""
+							}`}
 						>
 							About Us
-						</a>
+						</Link>
 					</li>
 					<li className="relative group">
-						<a
-							href="#"
-							className="cursor-pointer hover:text-tertiary transition-colors duration-300 text-md"
+						<div
+							className={`cursor-default hover:text-primary transition-colors duration-300 text-md ${
+								isActive("/projects") ? "text-primary" : ""
+							}`}
 						>
 							Projects &#x25BE;
-						</a>
+						</div>
 						{/* Dropdown */}
-						<div className="absolute right-0 mt-2 w-48 bg-foreground shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-							<a
-								href="#"
-								className="block px-4 py-2 hover:bg-stone-600 text-background hover:text-tertiary transition-colors duration-300 text-center text-xs rounded-t-md"
+						<div className="absolute right-0 mt-2 w-48 rounded-md bg-background/50 backdrop-blur-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 shadow-lg shadow-black/40">
+							<Link
+								href="/projects/soulbound"
+								className="block px-4 py-2 hover:bg-foreground text-foreground hover:text-primary transition-colors duration-300 text-center text-sm rounded-t-md"
 							>
-								Project Soulbound
-							</a>
-							<a
-								href="#"
-								className="block px-4 py-2 hover:bg-stone-600 text-background hover:text-tertiary transition-colors duration-300 text-center text-xs rounded-b-md"
+								Soulbound
+							</Link>
+							<Link
+								href="/projects/ethos"
+								className="block px-4 py-2 hover:bg-foreground  text-foreground hover:text-primary transition-colors duration-300 text-center text-sm rounded-b-md"
 							>
-								Project Ethos
-							</a>
+								Ethos
+							</Link>
 						</div>
 					</li>
 					<li>
-						<a
-							href="#"
-							className="hover:text-tertiary transition-colors duration-300 text-md"
+						<Link
+							href="/contact"
+							className={`hover:text-primary transition-colors duration-300 text-md ${
+								isActive("/contact") ? "text-primary" : ""
+							}`}
 						>
-							Contact
-						</a>
+							Contact Us
+						</Link>
 					</li>
 				</ul>
 			</div>

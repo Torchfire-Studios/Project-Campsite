@@ -11,6 +11,11 @@
 	--color-primary: #e81b44;
 	--color-secondary: #e85935;
 	--color-tertiary: #e8a723;
+
+	--color-soulbound-primary: oklch(69.6% 0.17 162.48);
+
+	--color-ethos-primary: #5dd4d4;
+
 	--font-sans: var(--font-castoro-titling);
 	--font-mono: var(--font-geist-mono);
 }
