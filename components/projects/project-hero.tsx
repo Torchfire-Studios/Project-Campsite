@@ -50,10 +50,7 @@ const Hero = ({ project }: { project: ProjectInfo }) => {
 
 				{/* Text content */}
 				<div className="relative rounded-2xl bg-background/30 p-12 backdrop-blur-sm top-75 shadow-lg shadow-black/40 text-center">
-					<h1
-						className="z-10 font-(family-name:--font-castoro) text-8xl inline-block"
-						style={{ color: `var(${project.primaryColor})` }}
-					>
+					<h1 className="z-10 font-(family-name:--font-castoro) text-8xl inline-block text-foreground">
 						{project.title}
 					</h1>
 					<hr

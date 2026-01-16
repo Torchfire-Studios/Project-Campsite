@@ -41,7 +41,7 @@ const Hero = () => {
 					Torchfire Studios
 				</h1>
 
-				<hr className="text-primary mt-4 border-2" />
+				<hr className="mt-4 h-1 border-0 bg-linear-to-r from-primary via-secondary to-tertiary" />
 			</div>
 
 			<div className="absolute bottom-10 right-10 z-10 flex items-center gap-4">

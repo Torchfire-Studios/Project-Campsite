@@ -93,9 +93,10 @@ const ImageCarousel = ({
 				)}
 
 				{items.map((item, index) => {
-					const sizeClasses = objectFit === "scale-down"
-						? "max-w-full max-h-full p-4 mx-auto my-auto"
-						: "w-full h-full";
+					const sizeClasses =
+						objectFit === "scale-down"
+							? "max-w-full max-h-full p-4 mx-auto my-auto"
+							: "w-full h-full";
 
 					return (
 						<img
