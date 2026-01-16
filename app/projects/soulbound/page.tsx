@@ -1,15 +1,18 @@
-import Image from "next/image";
+import Hero from "@/components/projects/project-hero";
+import Content from "@/components/projects/soulbound/content";
 
-export default function Soulbound() {
-  return (
-    <div className="relative flex items-center justify-center min-h-screen -mt-[115px] pt-[145px]">
-      <Image
-        src="/hero.png"
-        alt="Hero background"
-        fill
-        className="object-cover -z-10"
-        priority
-      />
-    </div>
-  );
+export default function Home() {
+	return (
+		<div>
+			<Hero
+				project={{
+					title: "Soulbound",
+					description: "Description of Soulbound",
+					imageUrl: "/soulbound.png",
+					primaryColor: "--color-soulbound-primary",
+				}}
+			/>
+			<Content />
+		</div>
+	);
 }
