@@ -14,17 +14,13 @@ const Hero = () => {
 	const showcaseProjects = [
 		{
 			title: "Soulbound",
-
-			imageUrl: "/soulbound.png",
-
+			imageUrl: "/soulbound/soulbound.png",
 			link: "/projects/soulbound",
 		},
 
 		{
 			title: "Ethos",
-
-			imageUrl: "/ethossnapshot_trimmed.png",
-
+			imageUrl: "/ethos/EthosSpiritZone2.png",
 			link: "/projects/ethos",
 		},
 	];
