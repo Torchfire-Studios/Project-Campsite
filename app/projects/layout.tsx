@@ -11,7 +11,7 @@ export default function ProjectLayout({
   return (
     <div>
       {/* Project Sub-Navbar */}
-      <ProjectNav projects={projects} />
+      {/* <ProjectNav projects={projects} /> */}
       {/* Project Content */}
       <>{children}</>
     </div>
