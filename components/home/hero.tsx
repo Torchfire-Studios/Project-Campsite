@@ -6,18 +6,25 @@ import SocialMedia from "./social-media";
 
 const Hero = () => {
 	const [scrollY, setScrollY] = useState(0);
+
 	const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
 	// Version that contains background image links & title
+
 	const showcaseProjects = [
 		{
 			title: "Soulbound",
+
 			imageUrl: "/soulbound.png",
+
 			link: "/projects/soulbound",
 		},
+
 		{
 			title: "Ethos",
+
 			imageUrl: "/ethossnapshot_trimmed.png",
+
 			link: "/projects/ethos",
 		},
 	];
@@ -30,6 +37,7 @@ const Hero = () => {
 		};
 
 		window.addEventListener("scroll", handleScroll);
+
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, []);
 
@@ -52,6 +60,7 @@ const Hero = () => {
 	return (
 		<div className="relative min-h-screen flex items-center justify-center overflow-hidden">
 			{/* Background images with parallax and crossfade */}
+
 			<div
 				className="absolute inset-0 z-0"
 				style={{
@@ -69,19 +78,23 @@ const Hero = () => {
 						}}
 					/>
 				))}
+
 				<div className="absolute inset-0 bg-black/30" />
 			</div>
 
 			{/* Text content */}
+
 			<div className="relative rounded-2xl bg-background/30 p-12 backdrop-blur-sm top-75 shadow-lg shadow-black/40 text-center">
-				<h1 className="z-10 font-(family-name:--font-castoro) text-8xl text-primary inline-block">
+				<h1 className="z-10 font-(family-name:--font-castoro) text-8xl text-foreground inline-block">
 					Torchfire Studios
 				</h1>
+
 				<hr className="text-primary mt-4 border-2" />
 			</div>
 
 			<div className="absolute bottom-15 z-10 flex items-center gap-4">
 				{/* Image navigation buttons */}
+
 				<div className="flex gap-2">
 					{showcaseProjects.map((_, index) => (
 						<button
@@ -100,6 +113,7 @@ const Hero = () => {
 
 			<div className="absolute bottom-10 right-10 z-10 flex items-center gap-4">
 				{/* Explore link */}
+
 				<Link
 					href={showcaseProjects[currentImageIndex].link}
 					className="px-6 py-3 border-2 border-primary bg-background/30 text-foreground hover:bg-primary hover:text-background font-semibold rounded-full transition-colors duration-300"
