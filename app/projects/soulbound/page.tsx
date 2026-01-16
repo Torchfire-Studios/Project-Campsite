@@ -8,7 +8,7 @@ export default function Home() {
 				project={{
 					title: "Soulbound",
 					description: "Description of Soulbound",
-					imageUrl: "/soulbound.png",
+					imageUrl: "/soulbound/soulbound.png",
 					primaryColor: "--color-soulbound-primary",
 				}}
 			/>

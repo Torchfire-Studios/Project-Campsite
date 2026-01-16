@@ -4,7 +4,9 @@ const ContactForm = () => {
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 		// Handle form submission logic here
-		alert("Message sent!");
+		alert(
+			"Hey! I don't work just yet. Please find us on LinkedIn: https://www.linkedin.com/company/torchfire-studios/"
+		);
 	};
 
 	return (

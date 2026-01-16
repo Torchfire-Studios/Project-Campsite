@@ -8,7 +8,7 @@ export default function Home() {
 				project={{
 					title: "Ethos",
 					description: "Description of Ethos",
-					imageUrl: "/ethossnapshot_trimmed.png",
+					imageUrl: "/ethos/EthosSpiritZone2_borderless.png",
 					primaryColor: "--color-ethos-primary",
 				}}
 			/>
