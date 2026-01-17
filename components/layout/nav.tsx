@@ -36,15 +36,16 @@ const nav = () => {
 						</Link>
 					</li>
 					<li className="relative group">
-						<div
+						<button
+							type="button"
 							className={`cursor-default hover:text-primary transition-colors duration-300 ${
 								isActive("/projects") ? "text-primary" : ""
 							}`}
 						>
 							Projects &#x25BE;
-						</div>
+						</button>
 						{/* Dropdown */}
-						<div className="absolute right-0 mt-2 w-48 rounded-md bg-background/50 backdrop-blur-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 shadow-lg shadow-black/40">
+						<div className="absolute right-0 mt-2 w-48 rounded-md bg-background/50 backdrop-blur-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-300 shadow-lg shadow-black/40">
 							<Link
 								href="/projects/soulbound"
 								className="block px-4 py-2 hover:bg-foreground text-foreground hover:text-primary transition-colors duration-300 text-center text-sm rounded-t-md"
