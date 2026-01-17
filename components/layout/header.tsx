@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Nav from "./nav";
 import { useState } from "react";
+import HamburgerNav from "./hamburger-nav";
 
 const header = () => {
 	const [isHovered, setIsHovered] = useState(false);
@@ -12,7 +13,7 @@ const header = () => {
 			<div className="fixed top-0 w-full flex justify-between py-4 px-6 flex-col z-20">
 				<div className="absolute inset-0 bg-linear-to-b from-background via-background/60 via-80% to-transparent -z-10 h-35" />
 				<div className="flex justify-between">
-					<h1 className="font-(family-name:--font-castoro) text-4xl text-foreground hover:text-primary items-center flex">
+					<h1 className="font-(family-name:--font-castoro) text-foreground hover:text-primary items-center flex">
 						<Link
 							href="/"
 							className="flex items-center gap-3"
@@ -40,12 +41,15 @@ const header = () => {
 									}}
 								/>
 							</div>
-							<div className="transition-colors duration-700 ease-out mt-6">
+							<div className="transition-colors duration-700 ease-out mt-6 md:flex hidden lg:text-4xl text-2xl">
 								Torchfire Studios
 							</div>
 						</Link>
 					</h1>
-					<Nav />
+					<div>
+						<Nav />
+						<HamburgerNav />
+					</div>
 				</div>
 			</div>
 		</div>

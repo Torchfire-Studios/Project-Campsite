@@ -12,6 +12,7 @@ interface ImageCarouselProps {
 	items: CarouselItem[];
 	interval?: number;
 	showDots?: boolean;
+	showMobileArrows?: boolean;
 	enableParallax?: boolean;
 	className?: string;
 	imageClassName?: string;
@@ -29,6 +30,7 @@ const ImageCarousel = ({
 	items,
 	interval = 10000,
 	showDots = true,
+	showMobileArrows = false,
 	enableParallax = false,
 	className = "",
 	imageClassName = "",
@@ -43,6 +45,16 @@ const ImageCarousel = ({
 }: ImageCarouselProps) => {
 	const [currentImageIndex, setCurrentImageIndex] = useState(0);
 	const [scrollY, setScrollY] = useState(0);
+
+	const goToPrevious = () => {
+		setCurrentImageIndex((prevIndex) =>
+			prevIndex === 0 ? items.length - 1 : prevIndex - 1
+		);
+	};
+
+	const goToNext = () => {
+		setCurrentImageIndex((prevIndex) => (prevIndex + 1) % items.length);
+	};
 
 	// Parallax scroll effect
 	useEffect(() => {
@@ -95,7 +107,7 @@ const ImageCarousel = ({
 				{items.map((item, index) => {
 					const sizeClasses =
 						objectFit === "scale-down"
-							? "max-w-full max-h-full p-4 mx-auto my-auto"
+							? "w-auto h-auto max-w-[90%] max-h-[90%] sm:max-w-[85%] sm:max-h-[85%] md:max-w-[80%] md:max-h-[80%] lg:max-w-[75%] lg:max-h-[75%] mx-auto my-auto"
 							: "w-full h-full";
 
 					return (
@@ -114,6 +126,55 @@ const ImageCarousel = ({
 				{overlayClassName && <div className={overlayClassName} />}
 			</div>
 
+			{/* Mobile arrow controls */}
+			{showMobileArrows && items.length > 1 && (
+				<>
+					<button
+						onClick={goToPrevious}
+						className="absolute left-2 top-1/2 -translate-y-1/2 z-10 sm:hidden bg-background/50 backdrop-blur-sm p-3 rounded-full shadow-lg hover:bg-background/70 transition-all"
+						aria-label="Previous image"
+					>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							fill="none"
+							viewBox="0 0 24 24"
+							strokeWidth={2.5}
+							stroke="currentColor"
+							className="w-5 h-5"
+						>
+							<path
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								d="M15.75 19.5L8.25 12l7.5-7.5"
+							/>
+						</svg>
+					</button>
+					<button
+						onClick={goToNext}
+						className="absolute right-2 top-1/2 -translate-y-1/2 z-10 sm:hidden bg-background/50 backdrop-blur-sm p-3 rounded-full shadow-lg hover:bg-background/70 transition-all"
+						aria-label="Next image"
+					>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							fill="none"
+							viewBox="0 0 24 24"
+							strokeWidth={2.5}
+							stroke="currentColor"
+							className="w-5 h-5"
+						>
+							<path
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								d="M8.25 4.5l7.5 7.5-7.5 7.5"
+							/>
+						</svg>
+					</button>
+					<div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 sm:hidden bg-background/50 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-lg text-sm">
+						{currentImageIndex + 1} / {items.length}
+					</div>
+				</>
+			)}
+
 			{/* Navigation dots */}
 			{showDots && items.length > 1 && (
 				<div className={dotsClassName}>
@@ -122,7 +183,7 @@ const ImageCarousel = ({
 							<button
 								key={index}
 								onClick={() => setCurrentImageIndex(index)}
-								className={`w-3 h-3 rounded-full transition-all duration-300 ${
+								className={`sm:w-3 sm:h-3 w-4 h-4 rounded-full transition-all duration-300 ${
 									index === currentImageIndex
 										? activeDotClassName
 										: inactiveDotClassName

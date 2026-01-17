@@ -32,7 +32,7 @@ const Hero = ({ project }: { project: ProjectInfo }) => {
 
 	return (
 		<div>
-			<div className="relative min-h-screen flex items-center justify-center overflow-hidden">
+			<div className="relative min-h-screen flex items-end justify-center overflow-hidden">
 				{/* Background images with parallax and crossfade */}
 				<div
 					className="absolute inset-0 z-0"
@@ -49,20 +49,20 @@ const Hero = ({ project }: { project: ProjectInfo }) => {
 				</div>
 
 				{/* Text content */}
-				<div className="relative rounded-2xl bg-background/30 p-12 backdrop-blur-sm top-75 shadow-lg shadow-black/40 text-center">
-					<h1 className="z-10 font-(family-name:--font-castoro) text-8xl inline-block text-foreground">
+				<div className="relative lg:bottom-40 sm:bottom-30 bottom-20 rounded-2xl bg-background/30 p-12 backdrop-blur-sm shadow-lg shadow-black/40 text-center">
+					<h1 className="z-10 font-(family-name:--font-castoro) lg:text-8xl sm:text-6xl text-4xl text-foreground inline-block">
 						{project.title}
 					</h1>
 					<hr
-						className="mt-4 border-2"
-						style={{ borderColor: `var(${project.primaryColor})` }}
+						className="mt-4 h-1 border-0"
+						style={{ backgroundColor: `var(${project.primaryColor})` }}
 					/>
 				</div>
 			</div>
 			<div className="flex justify-center">
 				{/* arrow pointing down as button to slide to content section */}
 				<a href="#content" onClick={scrollToContent}>
-					<div className="absolute bottom-10 left-1/2 -translate-x-1/2 cursor-pointer">
+					<div className="absolute lg:bottom-15 sm:bottom-10 bottom-5 left-1/2 -translate-x-1/2 cursor-pointer">
 						<style jsx>{`
 							@keyframes gentle-bounce {
 								0%,
