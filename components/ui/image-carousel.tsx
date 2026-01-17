@@ -48,7 +48,7 @@ const ImageCarousel = ({
 
 	const goToPrevious = () => {
 		setCurrentImageIndex((prevIndex) =>
-			prevIndex === 0 ? items.length - 1 : prevIndex - 1
+			prevIndex === 0 ? items.length - 1 : prevIndex - 1,
 		);
 	};
 
@@ -115,7 +115,7 @@ const ImageCarousel = ({
 							key={item.imageUrl}
 							src={item.imageUrl}
 							alt={item.title || `Image ${index + 1}`}
-							className={`absolute inset-0 ${sizeClasses} object-${objectFit} transition-opacity duration-3000 ${imageClassName}`}
+							className={`absolute inset-0 ${sizeClasses} object-${objectFit} transition-opacity duration-1500 ${imageClassName}`}
 							style={{
 								opacity: index === currentImageIndex ? 1 : 0,
 							}}

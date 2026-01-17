@@ -27,7 +27,7 @@ const Hero = () => {
 			{/* Background carousel with parallax and crossfade */}
 			<ImageCarousel
 				items={showcaseProjects}
-				interval={10000}
+				interval={5000}
 				showDots={true}
 				enableParallax={true}
 				className="absolute inset-0 z-0"
