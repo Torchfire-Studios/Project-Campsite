@@ -5,7 +5,7 @@ const SocialMedia = () => {
 
 	return (
 		<div className="flex items-center h-screen">
-			<div className="fixed right-4 flex flex-col space-y-4 bg-background/40 p-2 rounded-md backdrop-blur-sm shadow-lg shadow-black/40">
+			<div className="fixed right-4 flex flex-col space-y-6 bg-background/40 p-2 rounded-md backdrop-blur-sm shadow-lg shadow-black/40">
 				<a
 					href="https://www.linkedin.com/company/torchfire-studios/"
 					target="_blank"
