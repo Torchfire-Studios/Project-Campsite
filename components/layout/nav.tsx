@@ -12,13 +12,13 @@ const nav = () => {
 	};
 
 	return (
-		<div>
-			<div className="font-(family-name:--font-castoro-titling) flex gap-6 mt-8 text-lg">
-				<ul className="flex gap-10 font-semibold">
+		<div className="md:flex hidden">
+			<div className="font-(family-name:--font-castoro-titling) mt-8 lg:text-lg text-md">
+				<ul className="flex lg:gap-10 gap-6 font-semibold">
 					<li>
 						<Link
 							href="/"
-							className={`hover:text-primary transition-colors duration-300 text-md ${
+							className={`hover:text-primary transition-colors duration-300 ${
 								isActive("/") ? "text-primary" : ""
 							}`}
 						>
@@ -28,7 +28,7 @@ const nav = () => {
 					<li>
 						<Link
 							href="/about"
-							className={`hover:text-primary transition-colors duration-300 text-md ${
+							className={`hover:text-primary transition-colors duration-300 ${
 								isActive("/about") ? "text-primary" : ""
 							}`}
 						>
@@ -37,7 +37,7 @@ const nav = () => {
 					</li>
 					<li className="relative group">
 						<div
-							className={`cursor-default hover:text-primary transition-colors duration-300 text-md ${
+							className={`cursor-default hover:text-primary transition-colors duration-300 ${
 								isActive("/projects") ? "text-primary" : ""
 							}`}
 						>
@@ -62,7 +62,7 @@ const nav = () => {
 					<li>
 						<Link
 							href="/contact"
-							className={`hover:text-primary transition-colors duration-300 text-md ${
+							className={`hover:text-primary transition-colors duration-300 ${
 								isActive("/contact") ? "text-primary" : ""
 							}`}
 						>
