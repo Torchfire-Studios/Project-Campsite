@@ -31,7 +31,7 @@ const MobileNav = ({ isVisible, onClose }: MobileNavProps) => {
 		>
 			<div className="relative">
 				{!isProjectsOpen ? (
-					<ul className="flex flex-col gap-10 text-center text-5xl font-semibold">
+					<ul className="flex flex-col gap-10 text-center text-4xl font-semibold">
 						<li>
 							<Link
 								href="/"
@@ -72,11 +72,11 @@ const MobileNav = ({ isVisible, onClose }: MobileNavProps) => {
 					<div className="flex flex-col gap-10">
 						<button
 							onClick={handleBackClick}
-							className="text-4xl hover:text-primary transition-colors duration-300 hover:cursor-pointer"
+							className="text-3xl hover:text-primary transition-colors duration-300 hover:cursor-pointer"
 						>
 							&#x2190; Back
 						</button>
-						<ul className="flex flex-col gap-10 text-center text-5xl font-semibold">
+						<ul className="flex flex-col gap-10 text-center text-4xl font-semibold">
 							<li>
 								<Link
 									href="/projects/soulbound"
