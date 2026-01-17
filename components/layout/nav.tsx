@@ -2,9 +2,11 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { useState } from "react";
 
 const nav = () => {
 	const pathname = usePathname();
+	const [isProjectsOpen, setIsProjectsOpen] = useState(false);
 
 	const isActive = (path: string) => {
 		if (path === "/") return pathname === "/";
@@ -35,17 +37,26 @@ const nav = () => {
 							About Us
 						</Link>
 					</li>
-					<li className="relative group">
+					<li
+						className="relative group"
+						onMouseEnter={() => setIsProjectsOpen(true)}
+						onMouseLeave={() => setIsProjectsOpen(false)}
+					>
 						<button
 							type="button"
-							className={`cursor-default hover:text-primary transition-colors duration-300 ${
+							onClick={() => setIsProjectsOpen(!isProjectsOpen)}
+							className={`hover:text-primary transition-colors duration-300 ${
 								isActive("/projects") ? "text-primary" : ""
 							}`}
 						>
 							Projects &#x25BE;
 						</button>
 						{/* Dropdown */}
-						<div className="absolute right-0 mt-2 w-48 rounded-md bg-background/50 backdrop-blur-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-300 shadow-lg shadow-black/40">
+						<div
+							className={`absolute right-0 mt-2 w-48 rounded-md bg-background/50 backdrop-blur-sm shadow-lg shadow-black/40 transition-all duration-300 ${
+								isProjectsOpen ? "opacity-100 visible" : "opacity-0 invisible"
+							}`}
+						>
 							<Link
 								href="/projects/soulbound"
 								className="block px-4 py-2 hover:bg-foreground text-foreground hover:text-primary transition-colors duration-300 text-center text-sm rounded-t-md"
@@ -54,7 +65,7 @@ const nav = () => {
 							</Link>
 							<Link
 								href="/projects/ethos"
-								className="block px-4 py-2 hover:bg-foreground  text-foreground hover:text-primary transition-colors duration-300 text-center text-sm rounded-b-md"
+								className="block px-4 py-2 hover:bg-foreground text-foreground hover:text-primary transition-colors duration-300 text-center text-sm rounded-b-md"
 							>
 								Ethos
 							</Link>

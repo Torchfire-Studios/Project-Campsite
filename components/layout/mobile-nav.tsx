@@ -51,13 +51,12 @@ const MobileNav = ({ isVisible, onClose }: MobileNavProps) => {
 							</Link>
 						</li>
 						<li>
-							<button
-								type="button"
+							<div
 								className="hover:text-primary transition-colors duration-300 cursor-pointer"
 								onClick={handleProjectsClick}
 							>
 								Projects &#x25BE;
-							</button>
+							</div>
 						</li>
 						<li>
 							<Link
