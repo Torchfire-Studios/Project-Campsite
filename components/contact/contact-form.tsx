@@ -5,16 +5,18 @@ const ContactForm = () => {
 		e.preventDefault();
 		// Handle form submission logic here
 		alert(
-			"Hey! I don't work just yet. Please find us on LinkedIn: https://www.linkedin.com/company/torchfire-studios/"
+			"Hey! I don't work just yet. Please find us on LinkedIn: https://www.linkedin.com/company/torchfire-studios/",
 		);
 	};
 
 	return (
 		<form
-			className="w-xl mx-auto p-8 bg-black/40 backdrop-blur-sm rounded-xl px-12 py-12 shadow-md shadow-black/30"
+			className="sm:w-xl w-full mx-auto p-8 bg-black/40 backdrop-blur-sm rounded-xl px-12 py-12 shadow-md shadow-black/30"
 			onSubmit={handleSubmit}
 		>
-			<h2 className="text-4xl font-bold mb-6 text-foreground">Contact Us</h2>
+			<h2 className="sm:text-4xl text-2xl font-bold mb-6 text-foreground">
+				Contact Us
+			</h2>
 			<div className="mb-4">
 				<label
 					htmlFor="name"

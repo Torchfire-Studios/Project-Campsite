@@ -7,10 +7,10 @@ const Content = () => {
 			id="content"
 			className="p-4 md:p-12 bg-linear-to-br from-gray-950 via-black to-gray-900 bg-[radial-gradient(circle_at_25%_15%,rgba(75,150,150,0.2),transparent_40%),radial-gradient(circle_at_75%_60%,rgba(64,224,208,0.15),transparent_50%),radial-gradient(circle_at_40%_85%,rgba(72,150,140,0.18),transparent_45%),radial-gradient(circle_at_60%_35%,rgba(48,100,100,0.12),transparent_60%)]"
 		>
-			<div className="relative rounded-xl overflow-hidden max-w-6xl flex justify-center mx-auto">
+			<div className="relative rounded-xl overflow-hidden max-w-7xl flex justify-center mx-auto">
 				<ImageCarousel
 					items={soulboundShowcase}
-					interval={10000}
+					interval={5000}
 					showDots={true}
 					showMobileArrows={true}
 					enableParallax={false}
