@@ -59,12 +59,14 @@ const nav = () => {
 						>
 							<Link
 								href="/projects/soulbound"
+								onClick={() => setIsProjectsOpen(false)}
 								className="block px-4 py-2 hover:bg-foreground text-foreground hover:text-primary transition-colors duration-300 text-center text-sm rounded-t-md"
 							>
 								Soulbound
 							</Link>
 							<Link
 								href="/projects/ethos"
+								onClick={() => setIsProjectsOpen(false)}
 								className="block px-4 py-2 hover:bg-foreground text-foreground hover:text-primary transition-colors duration-300 text-center text-sm rounded-b-md"
 							>
 								Ethos
