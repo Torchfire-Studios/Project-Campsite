@@ -45,15 +45,46 @@ const ImageCarousel = ({
 }: ImageCarouselProps) => {
 	const [currentImageIndex, setCurrentImageIndex] = useState(0);
 	const [scrollY, setScrollY] = useState(0);
+	const [touchStart, setTouchStart] = useState<number | null>(null);
+	const [touchEnd, setTouchEnd] = useState<number | null>(null);
+	const [isUserInteraction, setIsUserInteraction] = useState(false);
 
 	const goToPrevious = () => {
+		setIsUserInteraction(true);
 		setCurrentImageIndex((prevIndex) =>
 			prevIndex === 0 ? items.length - 1 : prevIndex - 1,
 		);
 	};
 
 	const goToNext = () => {
+		setIsUserInteraction(true);
 		setCurrentImageIndex((prevIndex) => (prevIndex + 1) % items.length);
+	};
+
+	// Swipe detection - minimum distance to be considered a swipe (in pixels)
+	const minSwipeDistance = 50;
+
+	const onTouchStart = (e: React.TouchEvent) => {
+		setTouchEnd(null); // Reset touch end
+		setTouchStart(e.targetTouches[0].clientX);
+	};
+
+	const onTouchMove = (e: React.TouchEvent) => {
+		setTouchEnd(e.targetTouches[0].clientX);
+	};
+
+	const onTouchEnd = () => {
+		if (!touchStart || !touchEnd) return;
+
+		const distance = touchStart - touchEnd;
+		const isLeftSwipe = distance > minSwipeDistance;
+		const isRightSwipe = distance < -minSwipeDistance;
+
+		if (isLeftSwipe) {
+			goToNext();
+		} else if (isRightSwipe) {
+			goToPrevious();
+		}
 	};
 
 	// Parallax scroll effect
@@ -74,6 +105,7 @@ const ImageCarousel = ({
 		if (items.length <= 1) return;
 
 		const intervalId = setInterval(() => {
+			setIsUserInteraction(false);
 			setCurrentImageIndex((prevIndex) => (prevIndex + 1) % items.length);
 		}, interval);
 
@@ -98,6 +130,9 @@ const ImageCarousel = ({
 					}),
 					...(aspectRatio && { aspectRatio }),
 				}}
+				onTouchStart={onTouchStart}
+				onTouchMove={onTouchMove}
+				onTouchEnd={onTouchEnd}
 			>
 				{/* Background layer for contain mode */}
 				{backgroundClassName && (
@@ -110,12 +145,17 @@ const ImageCarousel = ({
 							? "w-auto h-auto max-w-[90%] max-h-[90%] sm:max-w-[85%] sm:max-h-[85%] md:max-w-[80%] md:max-h-[80%] lg:max-w-[75%] lg:max-h-[75%] mx-auto my-auto"
 							: "w-full h-full";
 
+					// Faster transition for user interactions (swipes/clicks), slower for auto-advance
+					const transitionDuration = isUserInteraction
+						? "duration-300"
+						: "duration-1500";
+
 					return (
 						<img
 							key={item.imageUrl}
 							src={item.imageUrl}
 							alt={item.title || `Image ${index + 1}`}
-							className={`absolute inset-0 ${sizeClasses} object-${objectFit} transition-opacity duration-1500 ${imageClassName}`}
+							className={`absolute inset-0 ${sizeClasses} object-${objectFit} transition-opacity ${transitionDuration} ${imageClassName}`}
 							style={{
 								opacity: index === currentImageIndex ? 1 : 0,
 							}}
