@@ -45,8 +45,8 @@ const ImageCarousel = ({
 }: ImageCarouselProps) => {
 	const [currentImageIndex, setCurrentImageIndex] = useState(0);
 	const [scrollY, setScrollY] = useState(0);
-	const [touchStart, setTouchStart] = useState<number | null>(null);
-	const [touchEnd, setTouchEnd] = useState<number | null>(null);
+	const [touchStart, setTouchStart] = useState<{ x: number; y: number } | null>(null);
+	const [touchEnd, setTouchEnd] = useState<{ x: number; y: number } | null>(null);
 	const [isUserInteraction, setIsUserInteraction] = useState(false);
 
 	const goToPrevious = () => {
@@ -66,17 +66,35 @@ const ImageCarousel = ({
 
 	const onTouchStart = (e: React.TouchEvent) => {
 		setTouchEnd(null); // Reset touch end
-		setTouchStart(e.targetTouches[0].clientX);
+		setTouchStart({
+			x: e.targetTouches[0].clientX,
+			y: e.targetTouches[0].clientY,
+		});
 	};
 
 	const onTouchMove = (e: React.TouchEvent) => {
-		setTouchEnd(e.targetTouches[0].clientX);
+		const currentTouch = {
+			x: e.targetTouches[0].clientX,
+			y: e.targetTouches[0].clientY,
+		};
+		setTouchEnd(currentTouch);
+
+		// Prevent vertical scrolling if the user is swiping horizontally
+		if (touchStart) {
+			const xDiff = Math.abs(touchStart.x - currentTouch.x);
+			const yDiff = Math.abs(touchStart.y - currentTouch.y);
+
+			// If horizontal movement is greater than vertical, prevent default scrolling
+			if (xDiff > yDiff) {
+				e.preventDefault();
+			}
+		}
 	};
 
 	const onTouchEnd = () => {
 		if (!touchStart || !touchEnd) return;
 
-		const distance = touchStart - touchEnd;
+		const distance = touchStart.x - touchEnd.x;
 		const isLeftSwipe = distance > minSwipeDistance;
 		const isRightSwipe = distance < -minSwipeDistance;
 
@@ -129,6 +147,7 @@ const ImageCarousel = ({
 						transform: `translateY(${scrollY * 0.4}px)`,
 					}),
 					...(aspectRatio && { aspectRatio }),
+					touchAction: "pan-y",
 				}}
 				onTouchStart={onTouchStart}
 				onTouchMove={onTouchMove}
