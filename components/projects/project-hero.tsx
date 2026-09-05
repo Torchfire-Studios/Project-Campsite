@@ -1,102 +1,46 @@
-"use client";
+import Image from "next/image";
+import StatusDot, { statusLabel } from "../ui/status-dot";
+import { Project } from "./types";
 
-import { useEffect, useState } from "react";
-
-interface ProjectInfo {
-	title: string;
-	description: string;
-	imageUrl: string;
-	primaryColor?: string;
-}
-
-const Hero = ({ project }: { project: ProjectInfo }) => {
-	const [scrollY, setScrollY] = useState(0);
-
-	if (!project.primaryColor) {
-		project.primaryColor = "#e81b44"; // default color
-	}
-
-	useEffect(() => {
-		const handleScroll = () => {
-			setScrollY(window.scrollY);
-		};
-
-		window.addEventListener("scroll", handleScroll);
-		return () => window.removeEventListener("scroll", handleScroll);
-	}, []);
-
-	const scrollToContent = (e: React.MouseEvent<HTMLAnchorElement>) => {
-		e.preventDefault();
-		document.getElementById("content")?.scrollIntoView({ behavior: "smooth" });
-	};
+const ProjectHero = ({ project }: { project: Project }) => {
+	const meta = [project.kind, project.platforms].filter(Boolean);
 
 	return (
-		<div>
-			<div className="relative min-h-screen flex items-end justify-center overflow-hidden">
-				{/* Background images with parallax and crossfade */}
-				<div
-					className="absolute inset-0 z-0"
-					style={{
-						transform: `translateY(${scrollY * 0.4}px)`,
-					}}
-				>
-					<img
-						src={project.imageUrl}
-						alt="Hero background"
-						className="w-full h-full object-cover"
-					/>
-					<div className="absolute inset-0 bg-black/30" />
-				</div>
-
-				{/* Text content */}
-				<div className="relative lg:bottom-40 sm:bottom-30 bottom-20 rounded-2xl bg-background/30 p-12 backdrop-blur-sm shadow-lg shadow-black/40 text-center">
-					<h1 className="z-10 font-(family-name:--font-castoro) lg:text-8xl sm:text-6xl text-4xl text-foreground inline-block">
+		<section className="relative flex min-h-[80svh] items-end overflow-hidden bg-[#0f0d0c] pt-24">
+			<Image
+				src={project.hero.src}
+				alt={project.hero.alt}
+				fill
+				priority
+				sizes="100vw"
+				className="object-cover"
+				style={{ objectPosition: project.hero.position ?? "center" }}
+			/>
+			<div className="absolute inset-0 bg-linear-to-b from-ash/50 via-transparent via-40% to-ash" />
+			<div className="gutter relative flex w-full flex-col gap-6 pb-16 lg:flex-row lg:items-end lg:justify-between lg:pb-20">
+				<div className="flex flex-col gap-5">
+					<div className="label flex flex-wrap items-center gap-x-3 gap-y-2 text-parchment">
+						<span className="inline-flex items-center gap-2 text-cream">
+							<StatusDot status={project.status} />
+							{statusLabel[project.status]}
+						</span>
+						{meta.map((item) => (
+							<span key={item} className="inline-flex items-center gap-3">
+								<span className="text-dust">/</span>
+								{item}
+							</span>
+						))}
+					</div>
+					<h1 className="display text-6xl leading-[0.9] sm:text-8xl lg:text-[9rem]">
 						{project.title}
 					</h1>
-					<hr
-						className="mt-4 h-1 border-0"
-						style={{ backgroundColor: `var(${project.primaryColor})` }}
-					/>
 				</div>
+				<p className="max-w-sm text-lg leading-normal text-parchment lg:pb-3">
+					{project.tagline}
+				</p>
 			</div>
-			<div className="flex justify-center">
-				{/* arrow pointing down as button to slide to content section */}
-				<a href="#content" onClick={scrollToContent}>
-					<div className="absolute lg:bottom-15 sm:bottom-10 bottom-5 left-1/2 -translate-x-1/2 cursor-pointer">
-						<style jsx>{`
-							@keyframes gentle-bounce {
-								0%,
-								100% {
-									transform: translateY(0);
-								}
-								50% {
-									transform: translateY(-10px);
-								}
-							}
-							.gentle-bounce {
-								animation: gentle-bounce 2s ease-in-out infinite;
-							}
-						`}</style>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							className="h-12 w-12 gentle-bounce"
-							style={{ color: `var(${project.primaryColor})` }}
-							fill="none"
-							viewBox="0 0 24 24"
-							stroke="currentColor"
-						>
-							<path
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								strokeWidth={2}
-								d="M19 9l-7 7-7-7"
-							/>
-						</svg>
-					</div>
-				</a>
-			</div>
-		</div>
+		</section>
 	);
 };
 
-export default Hero;
+export default ProjectHero;

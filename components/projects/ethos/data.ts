@@ -1,64 +1,114 @@
-import { CarouselItem } from "../../ui/image-carousel";
+import { Project } from "../types";
 
-export const ethosShowcase: CarouselItem[] = [
-	{
-		title: "Ethos Spirit Zone - Borderless",
-		imageUrl: "/ethos/EthosSpiritZone2_borderless.png",
+const ethos: Project = {
+	slug: "ethos",
+	title: "Ethos",
+	status: "early-concept",
+	// TODO: genre and a one-line description.
+	kind: "[Genre]",
+	tagline:
+		"[One sentence on what Ethos is. Concept art and character studies are already taking shape.]",
+	blurb:
+		"[One sentence on what Ethos is. Concept art and character studies are already taking shape.]",
+	hero: {
+		src: "/ethos/EthosSpiritZone2_borderless.png",
+		alt: "The Ethos spirit zone: an overgrown room with a glowing tree and lantern",
+		position: "center 40%",
 	},
-	{
-		title: "Ethos Spirit Zone - Spirit Zone",
-		imageUrl: "/ethos/EthosSpiritZone2.png",
+	card: {
+		src: "/ethos/EthosSpiritZone2_borderless.png",
+		alt: "The Ethos spirit zone concept painting",
+		position: "center 40%",
 	},
-	{
-		title: "Ethos Spirit Zone - Pretty Corner",
-		imageUrl: "/ethos/ethos_pretty_corner.png",
-	},
-	{
-		title: "Ethos - Badger Character Spirit",
-		imageUrl: "/ethos/BadgerCharConSpirit.png",
-	},
-	{
-		title: "Ethos - Badger Hammer",
-		imageUrl: "/ethos/BadgerHammer.png",
-	},
-	{
-		title: "Ethos - Beanbag Showcase",
-		imageUrl: "/ethos/Beanbag_showcase.png",
-	},
-	{
-		title: "Ethos - Arcade",
-		imageUrl: "/ethos/Ethos Arcade.png",
-	},
-	{
-		title: "Ethos - Arcade Color",
-		imageUrl: "/ethos/EthosArcadeColor.png",
-	},
-	{
-		title: "Ethos - Dolphin Armor",
-		imageUrl: "/ethos/EthosDolphinArmor.png",
-	},
-	{
-		title: "Ethos - Dolphin Armor 2",
-		imageUrl: "/ethos/EthosDolphinArmor2.png",
-	},
-	{
-		title: "Ethos - Test Room",
-		imageUrl: "/ethos/EthosTestRoom.png",
-	},
-	{
-		title: "Ethos - Test Shader",
-		imageUrl: "/ethos/EthosTestShader.png",
-	},
-	{
-		title: "Ethos - Shader Test 2",
-		imageUrl: "/ethos/ethosshadertest2.png",
-	},
-	{
-		title: "Ethos - Popcorn Showcase",
-		imageUrl: "/ethos/Popcorn_Showcase.png",
-	},
-	{
-		title: "Ethos - Stool Showcase",
-		imageUrl: "/ethos/Stool_Showcase.png",
-	},
-];
+	art: [
+		{
+			src: "/ethos/EthosSpiritZone2.png",
+			title: "Spirit zone, colour variations",
+			kind: "Environment",
+			artist: "Kellsey Irby",
+			wide: true,
+		},
+		{
+			src: "/ethos/BadgerCharConSpirit.png",
+			title: "Badger, spirit costume",
+			kind: "Character",
+			artist: "Jasmine Reyes",
+		},
+		{
+			src: "/ethos/EthosDolphinArmor.png",
+			title: "Dolphin armour, orthographics",
+			kind: "Concept",
+			artist: "Sarina Lloyd",
+		},
+		{
+			src: "/ethos/EthosDolphinArmor2.png",
+			title: "Dolphin armour, pose study",
+			kind: "Sketch",
+			artist: "Kellsey Irby",
+		},
+		{
+			src: "/ethos/EthosArcadeColor.png",
+			title: "Arcade, colour passes",
+			kind: "Environment",
+			artist: "Kellsey Irby",
+			wide: true,
+		},
+		{
+			src: "/ethos/Ethos Arcade.png",
+			title: "Arcade, value studies",
+			kind: "Environment",
+			artist: "Kellsey Irby",
+		},
+		{
+			src: "/ethos/ethos_pretty_corner.png",
+			title: "Spirit zone, pretty corner sketches",
+			kind: "Sketch",
+			artist: "Kellsey Irby",
+		},
+		{
+			src: "/ethos/BadgerHammer.png",
+			title: "Badger's hammer",
+			kind: "Concept",
+			artist: "Kellsey Irby",
+		},
+		{
+			src: "/ethos/ethosshadertest2.png",
+			title: "Shader test, beanbag room",
+			kind: "Shader",
+			artist: "Sydney Reinert",
+			wide: true,
+		},
+		{
+			src: "/ethos/EthosTestRoom.png",
+			title: "Test room, lighting",
+			kind: "Shader",
+			artist: "Sydney Reinert",
+		},
+		{
+			src: "/ethos/EthosTestShader.png",
+			title: "Shader test, grid room",
+			kind: "Shader",
+			artist: "Sydney Reinert",
+		},
+		{
+			src: "/ethos/Beanbag_showcase.png",
+			title: "Beanbag",
+			kind: "Model",
+			artist: "Sydney Reinert",
+		},
+		{
+			src: "/ethos/Popcorn_Showcase.png",
+			title: "Popcorn",
+			kind: "Model",
+			artist: "Sydney Reinert",
+		},
+		{
+			src: "/ethos/Stool_Showcase.png",
+			title: "Stool",
+			kind: "Model",
+			artist: "Sydney Reinert",
+		},
+	],
+};
+
+export default ethos;

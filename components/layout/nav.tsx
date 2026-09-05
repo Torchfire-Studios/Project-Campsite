@@ -3,90 +3,78 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useState } from "react";
+import { projectLinks } from "./nav-links";
 
-const nav = () => {
+const Nav = () => {
 	const pathname = usePathname();
 	const [isProjectsOpen, setIsProjectsOpen] = useState(false);
 
-	const isActive = (path: string) => {
-		if (path === "/") return pathname === "/";
-		return pathname.startsWith(path);
-	};
+	const isActive = (path: string) => pathname.startsWith(path);
+	const linkClass = (path: string) =>
+		`transition-colors duration-300 hover:text-gold ${
+			isActive(path) ? "text-cream" : "text-parchment"
+		}`;
 
 	return (
-		<div className="md:flex hidden">
-			<div className="font-(family-name:--font-castoro-titling) mt-8 lg:text-lg text-md">
-				<ul className="flex lg:gap-10 gap-6 font-semibold">
-					<li>
-						<Link
-							href="/"
-							className={`hover:text-primary transition-colors duration-300 ${
-								isActive("/") ? "text-primary" : ""
-							}`}
-						>
-							Home
-						</Link>
-					</li>
-					<li>
-						<Link
-							href="/about"
-							className={`hover:text-primary transition-colors duration-300 ${
-								isActive("/about") ? "text-primary" : ""
-							}`}
-						>
-							About Us
-						</Link>
-					</li>
-					<li
-						className="relative group"
-						onMouseEnter={() => setIsProjectsOpen(true)}
-						onMouseLeave={() => setIsProjectsOpen(false)}
+		<nav className="label hidden items-center gap-8 md:flex lg:gap-10">
+			<div
+				className="relative"
+				onMouseEnter={() => setIsProjectsOpen(true)}
+				onMouseLeave={() => setIsProjectsOpen(false)}
+			>
+				<button
+					type="button"
+					aria-haspopup="menu"
+					aria-expanded={isProjectsOpen}
+					onClick={() => setIsProjectsOpen(!isProjectsOpen)}
+					className={`label flex items-center gap-1.5 hover:cursor-pointer ${linkClass("/projects")}`}
+				>
+					Projects
+					<svg
+						width="12"
+						height="12"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						strokeWidth="2.5"
+						strokeLinecap="round"
+						strokeLinejoin="round"
+						aria-hidden
 					>
-						<button
-							type="button"
-							onClick={() => setIsProjectsOpen(!isProjectsOpen)}
-							className={`hover:text-primary transition-colors duration-300 ${
-								isActive("/projects") ? "text-primary" : ""
-							}`}
-						>
-							Projects &#x25BE;
-						</button>
-						{/* Dropdown */}
-						<div
-							className={`absolute right-0 mt-2 w-48 rounded-md bg-background/50 backdrop-blur-sm shadow-lg shadow-black/40 transition-all duration-300 ${
-								isProjectsOpen ? "opacity-100 visible" : "opacity-0 invisible"
-							}`}
-						>
+						<path d="M6 9l6 6 6-6" />
+					</svg>
+				</button>
+				<div
+					role="menu"
+					className={`absolute right-0 top-full pt-4 transition-all duration-300 ${
+						isProjectsOpen ? "visible opacity-100" : "invisible opacity-0"
+					}`}
+				>
+					<div className="flex w-44 flex-col overflow-hidden rounded-md border border-cream/14 bg-soot">
+						{projectLinks.map((project) => (
 							<Link
-								href="/projects/soulbound"
+								key={project.href}
+								role="menuitem"
+								href={project.href}
 								onClick={() => setIsProjectsOpen(false)}
-								className="block px-4 py-2 hover:bg-foreground text-foreground hover:text-primary transition-colors duration-300 text-center text-sm rounded-t-md"
+								className={`px-4 py-3 transition-colors duration-300 hover:bg-cream/8 hover:text-gold ${
+									isActive(project.href) ? "text-cream" : "text-parchment"
+								}`}
 							>
-								Soulbound
+								{project.label}
 							</Link>
-							<Link
-								href="/projects/ethos"
-								onClick={() => setIsProjectsOpen(false)}
-								className="block px-4 py-2 hover:bg-foreground text-foreground hover:text-primary transition-colors duration-300 text-center text-sm rounded-b-md"
-							>
-								Ethos
-							</Link>
-						</div>
-					</li>
-					<li>
-						<Link
-							href="/contact"
-							className={`hover:text-primary transition-colors duration-300 ${
-								isActive("/contact") ? "text-primary" : ""
-							}`}
-						>
-							Contact Us
-						</Link>
-					</li>
-				</ul>
+						))}
+					</div>
+				</div>
 			</div>
-		</div>
+			<Link href="/about" className={linkClass("/about")}>
+				Studio
+			</Link>
+			<Link href="/contact" className={linkClass("/contact")}>
+				Contact
+			</Link>
+		</nav>
 	);
 };
 
-export default nav;
+export default Nav;

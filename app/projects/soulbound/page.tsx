@@ -1,18 +1,12 @@
-import Hero from "../../../components/projects/project-hero";
-import Content from "../../../components/projects/soulbound/content";
+import type { Metadata } from "next";
+import ProjectPage from "../../../components/projects/project-page";
+import soulbound from "../../../components/projects/soulbound/data";
 
-export default function Home() {
-	return (
-		<div>
-			<Hero
-				project={{
-					title: "Soulbound",
-					description: "Description of Soulbound",
-					imageUrl: "/soulbound/soulbound.png",
-					primaryColor: "--color-soulbound-primary",
-				}}
-			/>
-			<Content />
-		</div>
-	);
+export const metadata: Metadata = {
+	title: "Soulbound · Torchfire Studios",
+	description: soulbound.tagline,
+};
+
+export default function Page() {
+	return <ProjectPage project={soulbound} />;
 }

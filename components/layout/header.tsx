@@ -5,55 +5,46 @@ import Nav from "./nav";
 import { useState } from "react";
 import HamburgerNav from "./hamburger-nav";
 
-const header = () => {
+const Header = () => {
 	const [isHovered, setIsHovered] = useState(false);
 
 	return (
-		<div className="absolute w-full">
-			<div className="fixed top-0 w-full flex justify-between py-4 px-6 flex-col z-20">
-				<div className="absolute inset-0 bg-linear-to-b from-background via-background/60 via-80% to-transparent -z-10 h-35" />
-				<div className="flex justify-between">
-					<h1 className="font-(family-name:--font-castoro) text-foreground hover:text-primary items-center flex">
-						<Link
-							href="/"
-							className="flex items-center gap-3"
-							onMouseEnter={() => setIsHovered(true)}
-							onMouseLeave={() => setIsHovered(false)}
-						>
-							<div className="relative w-15 h-15">
-								<img
-									src="/white_torch.png"
-									alt="Torchfire Studios"
-									width={50}
-									height={50}
-									className="absolute inset-0"
-								/>
-								<img
-									src="/justtorchflame.png"
-									alt="Torchfire Studios"
-									width={50}
-									height={50}
-									className="absolute inset-0 transition-all duration-500 ease-out"
-									style={{
-										clipPath: isHovered
-											? "inset(0% 0% 0% 0%)"
-											: "inset(100% 0% 0% 0%)",
-									}}
-								/>
-							</div>
-							<div className="transition-colors duration-700 ease-out mt-6 md:flex hidden lg:text-4xl text-2xl">
-								Torchfire Studios
-							</div>
-						</Link>
-					</h1>
-					<div>
-						<Nav />
-						<HamburgerNav />
+		<header className="fixed top-0 z-20 w-full">
+			<div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-32 bg-linear-to-b from-ash/90 via-ash/50 to-transparent" />
+			<div className="gutter flex h-20 items-center justify-between sm:h-22">
+				<Link
+					href="/"
+					className="flex items-center gap-3 text-cream transition-colors duration-300 hover:text-gold"
+					onMouseEnter={() => setIsHovered(true)}
+					onMouseLeave={() => setIsHovered(false)}
+				>
+					<div className="relative size-11 sm:size-12">
+						<img
+							src="/white_torch.png"
+							alt="Torchfire Studios"
+							className="absolute inset-0 h-full w-auto"
+						/>
+						<img
+							src="/justtorchflame.png"
+							alt=""
+							aria-hidden
+							className="absolute inset-0 h-full w-auto transition-all duration-500 ease-out"
+							style={{
+								clipPath: isHovered
+									? "inset(0% 0% 0% 0%)"
+									: "inset(100% 0% 0% 0%)",
+							}}
+						/>
 					</div>
-				</div>
+					<span className="display text-2xl sm:text-3xl">
+						Torchfire Studios
+					</span>
+				</Link>
+				<Nav />
+				<HamburgerNav />
 			</div>
-		</div>
+		</header>
 	);
 };
 
-export default header;
+export default Header;

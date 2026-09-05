@@ -1,18 +1,12 @@
-import Content from "../../../components/projects/ethos/content";
-import Hero from "../../../components/projects/project-hero";
+import type { Metadata } from "next";
+import ProjectPage from "../../../components/projects/project-page";
+import ethos from "../../../components/projects/ethos/data";
 
-export default function Home() {
-	return (
-		<div>
-			<Hero
-				project={{
-					title: "Ethos",
-					description: "Description of Ethos",
-					imageUrl: "/ethos/EthosSpiritZone2_borderless.png",
-					primaryColor: "--color-ethos-primary",
-				}}
-			/>
-			<Content />
-		</div>
-	);
+export const metadata: Metadata = {
+	title: "Ethos · Torchfire Studios",
+	description: ethos.tagline,
+};
+
+export default function Page() {
+	return <ProjectPage project={ethos} />;
 }

@@ -1,5 +1,8 @@
 "use client";
 
+const fieldClass =
+	"w-full rounded-md border border-cream/20 bg-soot px-4 py-3 text-cream transition-colors duration-300 placeholder:text-dust focus:border-gold focus:outline-none";
+
 const ContactForm = () => {
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
@@ -10,63 +13,50 @@ const ContactForm = () => {
 	};
 
 	return (
-		<form
-			className="sm:w-xl w-full mx-auto bg-black/40 backdrop-blur-sm rounded-xl px-6 py-8 sm:px-12 sm:py-12 shadow-md shadow-black/30"
-			onSubmit={handleSubmit}
-		>
-			<h2 className="sm:text-4xl text-2xl font-bold mb-6 text-foreground">
-				Contact Us
-			</h2>
-			<div className="mb-4">
-				<label
-					htmlFor="name"
-					className="block text-foreground font-semibold mb-2 text-sm sm:text-base"
-				>
+		<form className="flex flex-col gap-5" onSubmit={handleSubmit}>
+			<div className="flex flex-col gap-2">
+				<label htmlFor="name" className="label text-smoke">
 					Name
 				</label>
 				<input
 					type="text"
 					id="name"
 					name="name"
-					className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-foreground transition-all duration-300 text-sm sm:text-base"
+					autoComplete="name"
+					className={fieldClass}
 					required
 				/>
 			</div>
-			<div className="mb-4">
-				<label
-					htmlFor="email"
-					className="block text-foreground font-semibold mb-2 text-sm sm:text-base"
-				>
+			<div className="flex flex-col gap-2">
+				<label htmlFor="email" className="label text-smoke">
 					Email
 				</label>
 				<input
 					type="email"
 					id="email"
 					name="email"
-					className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-foreground transition-all duration-300 text-sm sm:text-base"
+					autoComplete="email"
+					className={fieldClass}
 					required
 				/>
 			</div>
-			<div className="mb-4">
-				<label
-					htmlFor="message"
-					className="block text-foreground font-semibold mb-2 text-sm sm:text-base"
-				>
+			<div className="flex flex-col gap-2">
+				<label htmlFor="message" className="label text-smoke">
 					Message
 				</label>
 				<textarea
 					id="message"
 					name="message"
-					rows={3}
-					className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-foreground transition-all duration-300 text-sm sm:text-base sm:rows-5"
+					rows={5}
+					className={fieldClass}
 					required
 				></textarea>
 			</div>
 			<button
 				type="submit"
-				className="border-2 border-primary hover:bg-primary text-foreground px-4 py-2 rounded-md hover:bg-primary-dark transition-colors duration-300 hover:cursor-pointer text-sm sm:text-base"
+				className="mt-2 inline-flex h-12 items-center justify-center self-start rounded-full bg-cream px-6 text-[15px] font-semibold text-ash transition-colors duration-300 hover:cursor-pointer hover:bg-gold"
 			>
-				Send Message
+				Send message
 			</button>
 		</form>
 	);

@@ -1,51 +1,32 @@
 import type { Metadata } from "next";
-import {
-	Geist,
-	Geist_Mono,
-	Montserrat,
-	Anta,
-	Castoro_Titling,
-	Castoro,
-} from "next/font/google";
+import { Geist_Mono, Instrument_Serif, Manrope } from "next/font/google";
 import "./globals.css";
 import Header from "../components/layout/header";
+import Footer from "../components/layout/footer";
 
-const geistSans = Geist({
-	variable: "--font-geist-sans",
+const instrumentSerif = Instrument_Serif({
 	subsets: ["latin"],
+	weight: "400",
+	style: ["normal", "italic"],
+	variable: "--font-instrument-serif",
+});
+
+const manrope = Manrope({
+	subsets: ["latin"],
+	weight: ["400", "500", "600"],
+	variable: "--font-manrope",
 });
 
 const geistMono = Geist_Mono({
+	subsets: ["latin"],
+	weight: ["400", "500"],
 	variable: "--font-geist-mono",
-	subsets: ["latin"],
-});
-
-const montserrat = Montserrat({
-	variable: "--font-montserrat",
-	subsets: ["latin"],
-});
-
-const anta = Anta({
-	subsets: ["latin"],
-	weight: "400",
-	variable: "--font-anta",
-});
-
-const castoroTitling = Castoro_Titling({
-	subsets: ["latin"],
-	weight: "400",
-	variable: "--font-castoro-titling",
-});
-
-const castoro = Castoro({
-	subsets: ["latin"],
-	weight: "400",
-	variable: "--font-castoro",
 });
 
 export const metadata: Metadata = {
 	title: "Torchfire Studios",
-	description: "Game Development Studio",
+	description:
+		"An independent game studio in Boise, Idaho, building its first games by hand.",
 };
 
 export default function RootLayout({
@@ -56,10 +37,11 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body
-				className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} ${anta.variable} ${castoroTitling.variable} ${castoro.variable} antialiased`}
+				className={`${instrumentSerif.variable} ${manrope.variable} ${geistMono.variable} antialiased`}
 			>
 				<Header />
 				{children}
+				<Footer />
 			</body>
 		</html>
 	);
