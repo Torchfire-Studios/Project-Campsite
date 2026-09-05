@@ -16,7 +16,7 @@ const Hero = () => (
 		<div className="absolute inset-0 bg-linear-to-b from-ash/55 via-ash/5 via-35% to-ash" />
 		<div className="gutter relative flex w-full flex-col gap-8 pb-14 lg:flex-row lg:items-end lg:justify-between lg:pb-22">
 			<div className="flex max-w-3xl flex-col gap-6 sm:gap-7">
-				<span className="label text-gold">
+				<span className="label text-cream">
 					Independent game studio &middot; Boise, Idaho
 				</span>
 				<h1 className="display text-balance text-[3.375rem] leading-[0.96] sm:text-7xl lg:text-[7.375rem]">
